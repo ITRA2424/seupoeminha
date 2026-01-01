@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entre o agora e o depois</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Cormorant Garamond', serif;
+    color: #ffffff;
+    background: radial-gradient(circle at bottom, #0a1a33, #020814);
+    overflow-x: hidden;
+}
+
+/* ESTRELAS */
+.stars, .stars2, .stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-repeat: repeat;
+    z-index: 0;
+}
+
+.stars {
+    background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                      radial-gradient(2px 2px at 100px 150px, #fff, transparent),
+                      radial-gradient(2px 2px at 200px 80px, #fff, transparent);
+    animation: moveStars 120s linear infinite;
+    opacity: 0.5;
+}
+
+.stars2 {
+    background-image: radial-gradient(1.5px 1.5px at 50px 100px, #fff, transparent),
+                      radial-gradient(1.5px 1.5px at 150px 200px, #fff, transparent);
+    animation: moveStars 200s linear infinite;
+    opacity: 0.3;
+}
+
+.stars3 {
+    background-image: radial-gradient(1px 1px at 300px 400px, #fff, transparent),
+                      radial-gradient(1px 1px at 400px 300px, #fff, transparent);
+    animation: moveStars 300s linear infinite;
+    opacity: 0.2;
+}
+
+@keyframes moveStars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-500px); }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px 80px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #9ecbff;
+    margin-bottom: 40px;
+    letter-spacing: 0.08em;
+}
+
+/* POEMA */
+.poem p {
+    margin-bottom: 28px;
+    line-height: 1.8;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+}
+
+.highlight {
+    color: #9ecbff;
+    font-weight: 500;
+}
+
+/* CONTADOR */
+.counter {
+    margin-top: 60px;
+    font-size: 1rem;
+    color: #9ecbff;
+    opacity: 0.8;
+}
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .poem p {
+        font-size: 1.3rem;
+    }
+
+    .counter {
+        font-size: 1.1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<div class="container">
+    <h1>Entre o agora e o depois</h1>
+
+    <div class="poem">
+        <p>
+            Existe uma força em você<br>
+            que não faz barulho,<br>
+            mas sustenta o mundo<br>
+            ao seu redor.
+        </p>
+
+        <p>
+            Você segue firme,<br>
+            mesmo quando a vida pesa,<br>
+            mesmo quando ninguém vê<br>
+            o quanto foi difícil chegar até aqui.
+        </p>
+
+        <p>
+            O mundo é grande, caótico,<br>
+            às vezes cruel,<br>
+            e ainda assim você está aqui —<br>
+            inteira, real, resistindo.
+        </p>
+
+        <p>
+            Gosto de você por isso,<br>
+            pela coragem que mora no seu jeito,<br>
+            pela luz que você carrega<br>
+            sem nem tentar brilhar.
+        </p>
+
+        <p>
+            Se existir algo sagrado neste mundo,<br>
+            acredito que seja isso:<br>
+            você existir<br>
+            e eu ter a sorte de te admirar.
+        </p>
+
+        <p>
+            E admiro ainda mais<br>
+            a força que te faz seguir,<br>
+            mesmo quando o amanhã é dúvida,<br>
+            mesmo sem saber o que pode acontecer.
+        </p>
+
+        <p>
+            Você caminha sem garantias,<br>
+            mas com o coração firme,<br>
+            e isso é coragem<br>
+            no seu estado mais verdadeiro.
+        </p>
+
+        <p>
+            Porque seguir em frente com medo<br>
+            é diferente de não ter medo —<br>
+            é escolher continuar<br>
+            apesar dele.
+        </p>
+
+        <p class="highlight">
+            E talvez você não perceba,<br>
+            mas sua existência<br>
+            é um milagre silencioso<br>
+            o improvável que deu certo.
+        </p>
+    </div>
+
+    <!-- CONTADOR NO FINAL -->
+    <div id="contador" class="counter"></div>
+</div>
+
+<script>
+const dataInicio = new Date("2025-12-28T00:00:00");
+
+function atualizarContador() {
+    const agora = new Date();
+    const diff = agora - dataInicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("contador").innerHTML =
+        `Tempo desde o nosso primeiro "oi"... ${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+}
+
+atualizarContador();
+setInterval(atualizarContador, 1000);
+</script>
+
+</body>
+</html>
